@@ -1,4 +1,4 @@
-import Factory
+import FactoryKit
 import Shared
 
 extension Container {
@@ -9,5 +9,9 @@ extension Container {
     
     var getGameBoardFlowUseCase: Factory<GetGameBoardFlowUseCase> {
         Factory(self) { DiWrapper.getting(GetGameBoardFlowUseCase.self) }
+    }
+    
+    var dataResultMapper: Factory<DataResultMapper> {
+        Factory(self) { LiveDataResultMapper() }
     }
 }

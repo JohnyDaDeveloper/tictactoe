@@ -1,7 +1,7 @@
 import Observation
-import Shared
-import Factory
+import FactoryKit
 import OSLog
+import IosModel
 
 @MainActor
 @Observable
@@ -15,17 +15,17 @@ class GameViewModel {
     )
 
     @ObservationIgnored
-    @Injected(\.createGameUseCase) private var createGameUseCase
+    @Injected(\.createGameUC) private var createGameUC
     
     init() {
         Task {
-            let gameIdResult = try await createGameUseCase.invoke()
-            switch onEnum(of: gameIdResult) {
+            let gameIdResult = try await createGameUC.invoke()
+            switch gameIdResult {
             case .error(let result):
-                logger.error("Failed to create game: \(result.exception.getStacktraceString())")
+                logger.error("Failed to create game: \(result.localizedDescription)")
                 break
             case .success(let result):
-                logger.info("Created new game with ID \(result.data?.gameId ?? "unknown")")
+                logger.info("Created new game with ID \(result.value)")
                 break
             }
         }

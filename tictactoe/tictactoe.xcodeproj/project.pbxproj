@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7D1266CA2EEF5CCA00A4A40D /* IosApp in Frameworks */ = {isa = PBXBuildFile; productRef = 7D1266C92EEF5CCA00A4A40D /* IosApp */; };
+		7D1266CD2EEF5CDD00A4A40D /* SharedFramework in Frameworks */ = {isa = PBXBuildFile; productRef = 7D1266CC2EEF5CDD00A4A40D /* SharedFramework */; };
 		7D5C0E682EEF37C500085757 /* Factory in Frameworks */ = {isa = PBXBuildFile; productRef = 7D5C0E672EEF37C500085757 /* Factory */; };
 		7D5C0E6A2EEF37C500085757 /* FactoryKit in Frameworks */ = {isa = PBXBuildFile; productRef = 7D5C0E692EEF37C500085757 /* FactoryKit */; };
-		7DA866572EEF48F8006434D6 /* Shared.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D5C0E372EEF32FB00085757 /* Shared.xcframework */; };
-		7DA866582EEF48F8006434D6 /* Shared.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7D5C0E372EEF32FB00085757 /* Shared.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -20,7 +20,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				7DA866582EEF48F8006434D6 /* Shared.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -28,8 +27,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		7D44189A2EEF5A410010A371 /* IosModel */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = IosModel; path = ../IosModel; sourceTree = SOURCE_ROOT; };
+		7D44189B2EEF5A6E0010A371 /* IosApp */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = IosApp; path = ../IosApp; sourceTree = SOURCE_ROOT; };
 		7D5C0E282EEF325900085757 /* tictactoe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tictactoe.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		7D5C0E372EEF32FB00085757 /* Shared.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Shared.xcframework; path = ../multiplatform/shared/build/XCFrameworks/lib/Shared.xcframework; sourceTree = "<group>"; };
+		7DA866BA2EEF4E57006434D6 /* SharedFramework */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = SharedFramework; path = ../SharedFramework; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -45,20 +46,31 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7D1266CD2EEF5CDD00A4A40D /* SharedFramework in Frameworks */,
+				7D1266CA2EEF5CCA00A4A40D /* IosApp in Frameworks */,
 				7D5C0E6A2EEF37C500085757 /* FactoryKit in Frameworks */,
 				7D5C0E682EEF37C500085757 /* Factory in Frameworks */,
-				7DA866572EEF48F8006434D6 /* Shared.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7D1266C82EEF5CBB00A4A40D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		7D5C0E1F2EEF325900085757 = {
 			isa = PBXGroup;
 			children = (
+				7D44189B2EEF5A6E0010A371 /* IosApp */,
+				7D44189A2EEF5A410010A371 /* IosModel */,
+				7DA866BA2EEF4E57006434D6 /* SharedFramework */,
 				7D5C0E2A2EEF325900085757 /* tictactoe */,
-				7D5C0E362EEF32FB00085757 /* Frameworks */,
+				7D1266C82EEF5CBB00A4A40D /* Frameworks */,
 				7D5C0E292EEF325900085757 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -71,14 +83,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		7D5C0E362EEF32FB00085757 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				7D5C0E372EEF32FB00085757 /* Shared.xcframework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -86,6 +90,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7D5C0E332EEF325A00085757 /* Build configuration list for PBXNativeTarget "tictactoe" */;
 			buildPhases = (
+				7DA866B62EEF4BFB006434D6 /* Build Shared */,
 				7D5C0E242EEF325900085757 /* Sources */,
 				7D5C0E252EEF325900085757 /* Frameworks */,
 				7D5C0E262EEF325900085757 /* Resources */,
@@ -102,6 +107,9 @@
 			packageProductDependencies = (
 				7D5C0E672EEF37C500085757 /* Factory */,
 				7D5C0E692EEF37C500085757 /* FactoryKit */,
+				7DA866BB2EEF4EB8006434D6 /* SharedFramework */,
+				7D1266C92EEF5CCA00A4A40D /* IosApp */,
+				7D1266CC2EEF5CDD00A4A40D /* SharedFramework */,
 			);
 			productName = tictactoe;
 			productReference = 7D5C0E282EEF325900085757 /* tictactoe.app */;
@@ -133,6 +141,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				7D5C0E662EEF37C500085757 /* XCRemoteSwiftPackageReference "Factory" */,
+				7D1266CB2EEF5CDD00A4A40D /* XCLocalSwiftPackageReference "../SharedFramework" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 7D5C0E292EEF325900085757 /* Products */;
@@ -153,6 +162,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		7DA866B62EEF4BFB006434D6 /* Build Shared */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Build Shared";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\ncd ..\npwd\n#./gradlew multiplatform:shared:buildAndCopyDebugXCFrameworkToCommonFolder\n./gradlew multiplatform:shared:embedAndSignAppleFrameworkForXcode\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		7D5C0E242EEF325900085757 /* Sources */ = {
@@ -295,6 +325,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = L9H49NRL68;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -323,6 +354,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = L9H49NRL68;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -365,6 +397,13 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCLocalSwiftPackageReference section */
+		7D1266CB2EEF5CDD00A4A40D /* XCLocalSwiftPackageReference "../SharedFramework" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../SharedFramework;
+		};
+/* End XCLocalSwiftPackageReference section */
+
 /* Begin XCRemoteSwiftPackageReference section */
 		7D5C0E662EEF37C500085757 /* XCRemoteSwiftPackageReference "Factory" */ = {
 			isa = XCRemoteSwiftPackageReference;
@@ -377,6 +416,14 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		7D1266C92EEF5CCA00A4A40D /* IosApp */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = IosApp;
+		};
+		7D1266CC2EEF5CDD00A4A40D /* SharedFramework */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = SharedFramework;
+		};
 		7D5C0E672EEF37C500085757 /* Factory */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 7D5C0E662EEF37C500085757 /* XCRemoteSwiftPackageReference "Factory" */;
@@ -386,6 +433,10 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 7D5C0E662EEF37C500085757 /* XCRemoteSwiftPackageReference "Factory" */;
 			productName = FactoryKit;
+		};
+		7DA866BB2EEF4EB8006434D6 /* SharedFramework */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = SharedFramework;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
