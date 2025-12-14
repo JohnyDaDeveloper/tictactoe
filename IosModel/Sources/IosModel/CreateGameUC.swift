@@ -1,6 +1,6 @@
 import FactoryKit
 
-public protocol CreateGameUC {
+public protocol CreateGameUC : Sendable {
     
     func invoke() async throws -> DataResult<IosModel.GameId>
 }

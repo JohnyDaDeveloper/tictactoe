@@ -1,11 +1,18 @@
 import SwiftUI
+import FactoryKit
 
 struct GameBoardView: View {
+    @State private var viewModel = GameViewModel()
+    
     var body: some View {
-        Text("Hello, world! It's bad!")
+        Text("Game ID: \(viewModel.boardState)")
     }
 }
 
-#Preview {
-    GameBoardView()
+#Preview("Success State") {
+    Container.shared.createGameUC.register {
+        MockCreateGameUC()
+    }
+    
+    return GameBoardView()
 }

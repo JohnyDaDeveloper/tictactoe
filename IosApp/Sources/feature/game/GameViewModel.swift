@@ -26,6 +26,7 @@ class GameViewModel {
                 break
             case .success(let result):
                 logger.info("Created new game with ID \(result.value)")
+                boardState = result.value
                 break
             }
         }

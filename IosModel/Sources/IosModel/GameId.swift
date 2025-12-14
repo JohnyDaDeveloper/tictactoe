@@ -1,4 +1,4 @@
-public struct GameId {
+public struct GameId : Sendable {
     public let value: String
     
     public init(value: String) {
