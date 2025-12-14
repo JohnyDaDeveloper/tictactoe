@@ -11,4 +11,3 @@
 local.properties
 /.koltin
 **/.kotlin
-!.idea/modules/*/*.iml
