@@ -1,6 +1,6 @@
 package cz.johnyapps.tictactoe.multiplatform.core.logger.util
 
-interface Logger {
+internal interface Logger {
 
     fun verbose(
         tag: String,

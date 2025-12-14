@@ -1,6 +1,6 @@
 package cz.johnyapps.tictactoe.multiplatform.core.logger.util
 
-object LiveLoggerFactory {
+internal object LiveLoggerFactory {
 
     fun create(
         logWriters: List<LogWriter>,

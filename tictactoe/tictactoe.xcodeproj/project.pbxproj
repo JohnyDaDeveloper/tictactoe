@@ -6,8 +6,30 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		7D5C0E682EEF37C500085757 /* Factory in Frameworks */ = {isa = PBXBuildFile; productRef = 7D5C0E672EEF37C500085757 /* Factory */; };
+		7D5C0E6A2EEF37C500085757 /* FactoryKit in Frameworks */ = {isa = PBXBuildFile; productRef = 7D5C0E692EEF37C500085757 /* FactoryKit */; };
+		7DA866572EEF48F8006434D6 /* Shared.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D5C0E372EEF32FB00085757 /* Shared.xcframework */; };
+		7DA866582EEF48F8006434D6 /* Shared.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7D5C0E372EEF32FB00085757 /* Shared.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		7DA866592EEF48F8006434D6 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				7DA866582EEF48F8006434D6 /* Shared.xcframework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		7D5C0E282EEF325900085757 /* tictactoe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tictactoe.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7D5C0E372EEF32FB00085757 /* Shared.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Shared.xcframework; path = ../multiplatform/shared/build/XCFrameworks/lib/Shared.xcframework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -23,6 +45,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7D5C0E6A2EEF37C500085757 /* FactoryKit in Frameworks */,
+				7D5C0E682EEF37C500085757 /* Factory in Frameworks */,
+				7DA866572EEF48F8006434D6 /* Shared.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -33,6 +58,7 @@
 			isa = PBXGroup;
 			children = (
 				7D5C0E2A2EEF325900085757 /* tictactoe */,
+				7D5C0E362EEF32FB00085757 /* Frameworks */,
 				7D5C0E292EEF325900085757 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -45,6 +71,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		7D5C0E362EEF32FB00085757 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7D5C0E372EEF32FB00085757 /* Shared.xcframework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -55,6 +89,7 @@
 				7D5C0E242EEF325900085757 /* Sources */,
 				7D5C0E252EEF325900085757 /* Frameworks */,
 				7D5C0E262EEF325900085757 /* Resources */,
+				7DA866592EEF48F8006434D6 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -65,6 +100,8 @@
 			);
 			name = tictactoe;
 			packageProductDependencies = (
+				7D5C0E672EEF37C500085757 /* Factory */,
+				7D5C0E692EEF37C500085757 /* FactoryKit */,
 			);
 			productName = tictactoe;
 			productReference = 7D5C0E282EEF325900085757 /* tictactoe.app */;
@@ -94,6 +131,9 @@
 			);
 			mainGroup = 7D5C0E1F2EEF325900085757;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				7D5C0E662EEF37C500085757 /* XCRemoteSwiftPackageReference "Factory" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 7D5C0E292EEF325900085757 /* Products */;
 			projectDirPath = "";
@@ -324,6 +364,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		7D5C0E662EEF37C500085757 /* XCRemoteSwiftPackageReference "Factory" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hmlongco/Factory";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.5.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		7D5C0E672EEF37C500085757 /* Factory */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7D5C0E662EEF37C500085757 /* XCRemoteSwiftPackageReference "Factory" */;
+			productName = Factory;
+		};
+		7D5C0E692EEF37C500085757 /* FactoryKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7D5C0E662EEF37C500085757 /* XCRemoteSwiftPackageReference "Factory" */;
+			productName = FactoryKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 7D5C0E202EEF325900085757 /* Project object */;
 }
