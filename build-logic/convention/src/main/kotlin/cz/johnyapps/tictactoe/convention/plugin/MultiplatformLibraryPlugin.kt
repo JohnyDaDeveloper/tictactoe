@@ -39,14 +39,7 @@ class MultiplatformLibraryPlugin : Plugin<Project> by PluginFactory build {
             if (!project.isCore) {
                 implementation(project(":multiplatform:core:common"))
                 implementation(project(":multiplatform:core:logger"))
-                implementation(project(":multiplatform:core:money"))
             }
-        }
-
-        sourceSets.androidUnitTest.dependencies {
-            implementation(versionCatalog.getLibrary("kotlin-test"))
-            implementation(versionCatalog.getLibrary("mockk"))
-            implementation(versionCatalog.getLibrary("kotest-assertions"))
         }
     } ?: error("Expected Kotlin Multiplatform plugin to be applied")
 }

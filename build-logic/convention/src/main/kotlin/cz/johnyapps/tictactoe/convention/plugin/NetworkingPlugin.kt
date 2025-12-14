@@ -17,7 +17,7 @@ class NetworkingPlugin : Plugin<Project> by PluginFactory build {
             implementation(versionCatalog.getLibrary("ktor-client-core"))
             implementation(versionCatalog.getLibrary("kotlinx-serialization-core"))
 
-            implementation(project(":multiplatform:library:networking"))
+            //implementation(project(":multiplatform:library:networking"))
         }
     } ?: error("Expected Kotlin Multiplatform plugin to be applied")
 }
