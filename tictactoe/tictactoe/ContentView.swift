@@ -1,9 +1,10 @@
 import SwiftUI
+import IosApp
 
 struct ContentView: View {
     var body: some View {
         VStack {
-            Text("Hi mom!")
+            GameBoardView()
         }
         .padding()
     }

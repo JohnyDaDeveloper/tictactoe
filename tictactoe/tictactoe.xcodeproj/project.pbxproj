@@ -11,6 +11,7 @@
 		7D1266CD2EEF5CDD00A4A40D /* SharedFramework in Frameworks */ = {isa = PBXBuildFile; productRef = 7D1266CC2EEF5CDD00A4A40D /* SharedFramework */; };
 		7D5C0E682EEF37C500085757 /* Factory in Frameworks */ = {isa = PBXBuildFile; productRef = 7D5C0E672EEF37C500085757 /* Factory */; };
 		7D5C0E6A2EEF37C500085757 /* FactoryKit in Frameworks */ = {isa = PBXBuildFile; productRef = 7D5C0E692EEF37C500085757 /* FactoryKit */; };
+		7D6625F22EFAAB17009B8ED5 /* SharedFramework in Frameworks */ = {isa = PBXBuildFile; productRef = 7DA866BB2EEF4EB8006434D6 /* SharedFramework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -27,10 +28,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		7D44189A2EEF5A410010A371 /* IosModel */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = IosModel; path = ../IosModel; sourceTree = SOURCE_ROOT; };
-		7D44189B2EEF5A6E0010A371 /* IosApp */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = IosApp; path = ../IosApp; sourceTree = SOURCE_ROOT; };
+		7D44189A2EEF5A410010A371 /* IosModel */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = IosModel; path = ../ios/IosModel; sourceTree = SOURCE_ROOT; };
+		7D44189B2EEF5A6E0010A371 /* IosApp */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = IosApp; path = ../ios/IosApp; sourceTree = SOURCE_ROOT; };
 		7D5C0E282EEF325900085757 /* tictactoe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tictactoe.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		7DA866BA2EEF4E57006434D6 /* SharedFramework */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = SharedFramework; path = ../SharedFramework; sourceTree = SOURCE_ROOT; };
+		7DA866BA2EEF4E57006434D6 /* SharedFramework */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = SharedFramework; path = ../ios/SharedFramework; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -46,6 +47,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7D6625F22EFAAB17009B8ED5 /* SharedFramework in Frameworks */,
 				7D1266CD2EEF5CDD00A4A40D /* SharedFramework in Frameworks */,
 				7D1266CA2EEF5CCA00A4A40D /* IosApp in Frameworks */,
 				7D5C0E6A2EEF37C500085757 /* FactoryKit in Frameworks */,
