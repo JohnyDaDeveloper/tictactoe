@@ -1,0 +1,4 @@
+enum GameAction {
+    
+    case onClick
+}

@@ -1,0 +1,21 @@
+# Build outputs (3.4GB reduction)
+**/build/
+build/
+
+# Gradle caches
+.gradle/
+**/.gradle/
+.kotlin/
+**/.kotlin/
+
+# IDE files
+.idea/
+*.iml
+.DS_Store
+**/.DS_Store
+
+# Platform-specific
+xcuserdata/
+*.xcworkspace/xcuserdata/
+*.xcuserstate
+xcshareddata/
