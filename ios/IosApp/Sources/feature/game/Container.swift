@@ -1,11 +1,33 @@
 import FactoryKit
 
 extension Container {
-
-    @MainActor
-    var gameViewModel: Factory<GameViewModel> {
+    
+    var boardUiStateMapper: Factory<BoardUiStateMapper> {
         Factory(self) {
-            MainActor.assumeIsolated { LiveGameViewModel() }
+            LiveBoardUiStateMapper()
+        }
+    }
+    
+    var gameUiStateMapper: Factory<GameUiStateMapper> {
+        Factory(self) {
+            LiveGameUiStateMapper(
+                boardUiStateMapper: self.boardUiStateMapper()
+            )
+        }
+    }
+    
+    var loadGameDelegate: Factory<LoadGameDelegate> {
+        Factory(self) {
+            LiveLoadGameDelegate()
+        }
+    }
+
+    var gameViewModel: Factory<GameViewModel> {
+        Factory(self) { @MainActor in
+            LiveGameViewModel(
+                loadGameDelegate: self.loadGameDelegate(),
+                gameUiStateMapper: self.gameUiStateMapper(),
+            )
         }
     }
 }

@@ -1,4 +1,7 @@
 enum GameAction {
     
-    case onClick
+    case onFieldClick(
+        row: Int,
+        column: Int,
+    )
 }

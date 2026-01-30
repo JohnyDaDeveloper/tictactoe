@@ -1,9 +1,9 @@
 
 public struct GameBoard : Sendable {
-    public let moves: Set<Move>
+    public let moves: [Move]
     public let size: Size
     
-    public init(moves: Set<Move>, size: Size) {
+    public init(moves: [Move], size: Size) {
         self.moves = moves
         self.size = size
     }

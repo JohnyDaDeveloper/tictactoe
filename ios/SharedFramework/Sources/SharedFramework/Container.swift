@@ -14,4 +14,20 @@ extension Container {
     var dataResultMapper: Factory<DataResultMapper> {
         Factory(self) { LiveDataResultMapper() }
     }
+    
+    var playerIdMapper: Factory<PlayerIdMapper> {
+        Factory(self) { LivePlayerIdMapper() }
+    }
+    
+    var gameIdMapper: Factory<GameIdMapper> {
+        Factory(self) { LiveGameIdMapper() }
+    }
+    
+    var gameBoardMapper: Factory<GameBoardMapper> {
+        Factory(self) {
+            LiveGameBoardMapper(
+                playerIdMapper: self.playerIdMapper(),
+            )
+        }
+    }
 }

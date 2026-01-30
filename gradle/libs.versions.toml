@@ -76,6 +76,7 @@ kotlinx-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", vers
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
 
 local-android-app = { id = "cz.johnyapps.tictactoe.android.app", version = "unspecified" }
+local-android-library = { id = "cz.johnyapps.tictactoe.android.library", version = "unspecified" }
 local-multiplatform-library = { id = "cz.johnyapps.tictactoe.multiplatform.library", version = "unspecified" }
 local-multiplatform-ui = { id = "cz.johnyapps.tictactoe.multiplatform.ui", version = "unspecified" }
 local-networking = { id = "cz.johnyapps.tictactoe.networking", version = "unspecified" }

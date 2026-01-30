@@ -25,6 +25,7 @@ includeBuild("build-logic")
 
 rootProject.name = "TicTacToe"
 include(":app")
+include(":android:feature:game")
 include(":multiplatform:core:common")
 include(":multiplatform:core:logger")
 include(":multiplatform:core:key-value")

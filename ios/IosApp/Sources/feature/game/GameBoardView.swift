@@ -8,27 +8,40 @@ public struct GameBoardView: View {
     public init() {}
     
     public var body: some View {
-        let gameId = viewModel.state.gameId
+        let boardData = viewModel.state.board
         
-        switch gameId {
-        case .loading:
-            Text("Loading...")
-            
-        case .error:
-            Text("Error")
-            
-        case .ready(let id):
-            Text("Game ID: \(id.value)")
+        ZStack {
+            switch boardData {
+            case .loading:
+                Text("Loading...")
+                
+            case .error:
+                Text("Error")
+                
+            case .ready(let board):
+                BoardView(
+                    state: board,
+                    onFieldClick: { _, _ in },
+                )
+            }
         }
     }
 }
 
-#Preview("Success State") {
+#Preview {
     Container.shared.gameViewModel.register {
         MainActor.assumeIsolated {
             MockGameViewmodel(
-                state: GameViewModelState(
-                    gameId: DataState.loading
+                state: GameUiState(
+                    board: DataState.ready(
+                        BoardUiState(
+                            fields: [
+                                [FieldUiState(player: nil), FieldUiState(player: nil), FieldUiState(player: nil)],
+                                [FieldUiState(player: nil), FieldUiState(player: nil), FieldUiState(player: nil)],
+                                [FieldUiState(player: nil), FieldUiState(player: nil), FieldUiState(player: nil)]
+                            ]
+                        )
+                    )
                 )
             )
         }

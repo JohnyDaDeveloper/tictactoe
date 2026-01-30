@@ -20,6 +20,10 @@ gradlePlugin {
             id = libs.plugins.local.android.app.get().pluginId
             implementationClass = "$pluginsPackage.AndroidAppPlugin"
         }
+        register("localAndroidLibraryPlugin") {
+            id = libs.plugins.local.android.library.get().pluginId
+            implementationClass = "$pluginsPackage.AndroidLibraryPlugin"
+        }
         register("localMultiplatformLibrary") {
             id = libs.plugins.local.multiplatform.library.get().pluginId
             implementationClass = "$pluginsPackage.MultiplatformLibraryPlugin"
