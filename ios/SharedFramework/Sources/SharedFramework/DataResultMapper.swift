@@ -12,14 +12,14 @@ protocol DataResultMapper: Sendable {
     
     func map<KT, ST>(
         kmpResult: Shared.DataResult<KT>,
-        mapData: (KT) -> ST
+        _ mapData: (KT) -> ST
     ) -> IosModel.DataResult<ST>
 }
 
 struct LiveDataResultMapper : DataResultMapper {
     func map<KT, ST>(
         kmpResult: Shared.DataResult<KT>,
-        mapData: (KT) -> ST
+        _ mapData: (KT) -> ST
     ) -> IosModel.DataResult<ST> {
         let mappedResult: IosModel.DataResult<ST>
         

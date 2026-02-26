@@ -1,8 +1,13 @@
 import FactoryKit
 
-public protocol GetBoardStreamUC {
+public struct SequenceHolder<T: Sendable, Sequence : AsyncSequence<T, Never>> : Sendable where Sequence: Sendable {
     
-    func invoke(gameId: GameId) -> any AsyncSequence<GameBoard?, Error>
+    public let sequence: Sequence
+}
+
+public protocol GetBoardStreamUC: Sendable {
+    
+    func invoke(gameId: GameId) -> DataResult<any AsyncSequence<IosModel.GameBoard, Never>>
 }
 
 public extension Container {

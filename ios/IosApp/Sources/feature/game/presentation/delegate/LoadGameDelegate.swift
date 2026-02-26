@@ -11,19 +11,17 @@ struct LiveLoadGameDelegate : LoadGameDelegate {
     private let createGameUseCase: CreateGameUC
     private let getBoardStreamUseCase: GetBoardStreamUC
     
-    
     private let logger = Logger(
         subsystem: "cz.johnyapps.tictactoe",
         category: "LoadGameDelegate",
     )
-    
     
     @MainActor
     func handle(stateContainer: GameStateContainer) async {
         let result = await createGameUseCase.invoke()
         
         switch result {
-        case .success(let gameId): collectBoard(gameId: gameId)
+        case .success(let gameId): await collectBoard(gameId: gameId)
             
             
         case .error(let error): logger.error(
@@ -32,7 +30,10 @@ struct LiveLoadGameDelegate : LoadGameDelegate {
         }
     }
     
-    private func collectBoard(gameId: GameId) {
-        getBoardStreamUseCase.invoke(gameId: gameId)
+    @MainActor
+    private func collectBoard(gameId: GameId) async {
+        for await board in getBoardStreamUseCase.invoke(gameId: gameId) {
+            
+        }
     }
 }

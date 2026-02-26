@@ -13,7 +13,7 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
 
 plugins {
     alias(libs.plugins.local.multiplatform.library)
-    alias(libs.plugins.local.multiplatform.ui)
+    //alias(libs.plugins.local.multiplatform.ui)
     alias(libs.plugins.skie)
 }
 

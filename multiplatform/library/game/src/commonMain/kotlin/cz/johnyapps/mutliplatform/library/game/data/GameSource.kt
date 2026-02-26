@@ -7,9 +7,10 @@ import cz.johnyapps.mutliplatform.library.game.domain.model.MakeMove
 import cz.johnyapps.mutliplatform.library.game.domain.model.PlayerId
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.distinctUntilChanged
-import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.sync.withLock
 import kotlin.uuid.ExperimentalUuidApi
 import kotlin.uuid.Uuid
 
@@ -17,7 +18,7 @@ internal interface GameSource {
 
     suspend fun createGame(): GameId
 
-    fun getBoardFlow(gameId: GameId): Flow<GameBoard?>
+    fun getBoardFlow(gameId: GameId): Flow<GameBoard>
 
     suspend fun makeMove(
         playerId: PlayerId,
@@ -27,10 +28,11 @@ internal interface GameSource {
 
 internal class LiveGameSource : GameSource {
 
-    private val gameFlow = MutableStateFlow(listOf<Game>())
+    private val games = mutableListOf<Game>()
+    private val gamesMutex = Mutex()
 
     @OptIn(ExperimentalUuidApi::class)
-    override suspend fun createGame(): GameId {
+    override suspend fun createGame(): GameId = gamesMutex.withLock {
         val gameId = GameId(
             gameId = Uuid.random().toString(),
         )
@@ -43,53 +45,45 @@ internal class LiveGameSource : GameSource {
             )
         )
 
-        gameFlow.update { games ->
-            games + Game(
-                id = gameId,
-                board = gameBoard,
-            )
-        }
+        games += Game(
+            id = gameId,
+            board = MutableStateFlow(gameBoard),
+        )
 
         return gameId
     }
 
-    override fun getBoardFlow(gameId: GameId): Flow<GameBoard?> {
-        return gameFlow.map { games ->
-            games.firstOrNull { it.id == gameId }
-        }.map { game ->
-            game?.board
-        }.distinctUntilChanged()
+    override fun getBoardFlow(gameId: GameId): Flow<GameBoard> {
+        return flow {
+            gamesMutex.withLock {
+                val game = games.firstOrNull { it.id == gameId }
+                    ?: throw GameNotFoundException(gameId)
+
+                game.board.collect { emit(it) }
+            }
+        }
     }
 
     override suspend fun makeMove(
         playerId: PlayerId,
         makeMove: MakeMove,
-    ) {
-        gameFlow.update { games ->
-            val game = games.firstOrNull { it.id == makeMove.gameId }
-                ?: throw GameNotFoundException(makeMove.gameId)
+    ) = gamesMutex.withLock {
+        val game = games.firstOrNull { it.id == makeMove.gameId }
+            ?: throw GameNotFoundException(makeMove.gameId)
 
-            val updatedMoves = game.board.moves + GameBoard.Move(
+        game.board.update { currentBoard ->
+            val updatedMoves = currentBoard.moves + GameBoard.Move(
                 x = makeMove.field.x,
                 y = makeMove.field.y,
                 playerId = playerId,
             )
 
-            val updatedGame = game.copy(
-                board = game.board.copy(
-                    moves = updatedMoves,
-                )
-            )
-
-            games.toMutableList()
-                .apply { removeAll { it.id == makeMove.gameId } }
-                .plus(updatedGame)
-                .toList()
+            currentBoard.copy(moves = updatedMoves)
         }
     }
 
     private data class Game(
         val id: GameId,
-        val board: GameBoard,
+        val board: MutableStateFlow<GameBoard>,
     )
 }
