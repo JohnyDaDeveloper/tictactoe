@@ -5,8 +5,8 @@ struct BoardView: View {
     let onFieldClick: (Int, Int) -> Void
     
     var body: some View {
-        let rowCount = state.fields.count
-        let columnCount = state.fields.first!.count
+        let rowCount = state.fields.first!.count
+        let columnCount = state.fields.count
         
         GeometryReader { geometry in
             ZStack {
@@ -28,7 +28,7 @@ struct BoardView: View {
                         HStack(spacing: CGFloat(spacing)) {
                             ForEach(0..<columnCount, id: \.self) { column in
                                 FieldView(
-                                    state: state.fields[row][column],
+                                    state: state.fields[column][row],
                                     size: fieldSize,
                                 )
                                 .onTapGesture {

@@ -6,7 +6,7 @@ data class MakeMove(
 ) {
 
     data class Field(
-        val x: Int,
-        val y: Int,
+        val column: Int,
+        val row: Int,
     )
 }

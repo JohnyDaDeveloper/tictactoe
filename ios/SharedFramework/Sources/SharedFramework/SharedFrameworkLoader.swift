@@ -20,5 +20,13 @@ public class SharedFrameworkLoader {
                 dataResultMapper: Container.shared.dataResultMapper()
             )
         }
+        
+        Container.shared.makeMoveUC.register {
+            LiveMakeMoveUC(
+                makeMoveUseCase: DiWrapper.getting(MakeMoveUseCase.self),
+                makeMoveMapper: Container.shared.makeMoveMapper(),
+                dataResultMapper: Container.shared.dataResultMapper(),
+            )
+        }
     }
 }

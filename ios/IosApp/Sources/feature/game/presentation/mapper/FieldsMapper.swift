@@ -13,13 +13,13 @@ class LiveFieldsMapper : FieldsMapper {
                 repeating: FieldUiState(
                     player: nil,
                 ),
-                count: gameBoard.size.y
+                count: gameBoard.size.rows
             ),
-            count: gameBoard.size.x
+            count: gameBoard.size.columns
         )
         
         for move in gameBoard.moves {
-            fields[move.x][move.y] = FieldUiState(
+            fields[move.column][move.row] = FieldUiState(
                 player: PlayerUiState(
                     playerId: move.playerId.playerId,
                     icon: IconUiState.circle,

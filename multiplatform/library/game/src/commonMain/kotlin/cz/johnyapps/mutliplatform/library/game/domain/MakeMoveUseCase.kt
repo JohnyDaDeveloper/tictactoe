@@ -1,9 +1,9 @@
 package cz.johnyapps.mutliplatform.library.game.domain
 
-import cz.johnyapps.tictactoe.multiplaform.core.common.util.model.DataResult
 import cz.johnyapps.mutliplatform.library.game.data.GameSource
 import cz.johnyapps.mutliplatform.library.game.domain.model.MakeMove
 import cz.johnyapps.mutliplatform.library.game.domain.model.PlayerId
+import cz.johnyapps.tictactoe.multiplaform.core.common.util.model.DataResult
 
 private val playerId = PlayerId("fake_player")
 
@@ -18,7 +18,7 @@ internal class LiveMakeMoveUseCase(
 ) : MakeMoveUseCase {
 
     override suspend fun invoke(makeMove: MakeMove): DataResult<Unit> {
-        return gameCaller.callGame { 
+        return gameCaller.callGame {
             gameSource.makeMove(playerId, makeMove)
         }
     }

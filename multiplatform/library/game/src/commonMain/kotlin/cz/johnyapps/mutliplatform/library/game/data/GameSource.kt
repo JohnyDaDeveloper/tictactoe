@@ -7,7 +7,6 @@ import cz.johnyapps.mutliplatform.library.game.domain.model.MakeMove
 import cz.johnyapps.mutliplatform.library.game.domain.model.PlayerId
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
@@ -40,8 +39,8 @@ internal class LiveGameSource : GameSource {
         val gameBoard = GameBoard(
             moves = emptySet(),
             size = GameBoard.Size(
-                x = 10,
-                y = 10,
+                columns = 10,
+                rows = 10,
             )
         )
 
@@ -54,14 +53,10 @@ internal class LiveGameSource : GameSource {
     }
 
     override fun getBoardFlow(gameId: GameId): Flow<GameBoard> {
-        return flow {
-            gamesMutex.withLock {
-                val game = games.firstOrNull { it.id == gameId }
-                    ?: throw GameNotFoundException(gameId)
+        val game = games.firstOrNull { it.id == gameId }
+            ?: throw GameNotFoundException(gameId)
 
-                game.board.collect { emit(it) }
-            }
-        }
+        return game.board
     }
 
     override suspend fun makeMove(
@@ -73,8 +68,8 @@ internal class LiveGameSource : GameSource {
 
         game.board.update { currentBoard ->
             val updatedMoves = currentBoard.moves + GameBoard.Move(
-                x = makeMove.field.x,
-                y = makeMove.field.y,
+                column = makeMove.field.column,
+                row = makeMove.field.row,
                 playerId = playerId,
             )
 

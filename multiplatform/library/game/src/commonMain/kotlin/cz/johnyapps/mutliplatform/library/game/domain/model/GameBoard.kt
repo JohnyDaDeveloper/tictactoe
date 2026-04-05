@@ -6,13 +6,13 @@ data class GameBoard(
 ) {
 
     data class Move(
-        val x: Int,
-        val y: Int,
+        val column: Int,
+        val row: Int,
         val playerId: PlayerId,
     )
 
     data class Size(
-        val x: Int,
-        val y: Int,
+        val columns: Int,
+        val rows: Int,
     )
 }

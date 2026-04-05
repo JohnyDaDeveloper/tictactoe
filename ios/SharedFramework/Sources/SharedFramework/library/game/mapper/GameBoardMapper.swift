@@ -21,16 +21,16 @@ struct LiveGameBoardMapper : GameBoardMapper {
         IosModel.GameBoard(
             moves: sharedModel.moves.map(mapMove),
             size: IosModel.GameBoard.Size(
-                x: sharedModel.size.x.int,
-                y: sharedModel.size.y.int
+                columns: sharedModel.size.columns.int,
+                rows: sharedModel.size.rows.int
             )
         )
     }
     
     private func mapMove(sharedModel: Shared.GameBoard.Move) -> IosModel.GameBoard.Move {
         IosModel.GameBoard.Move(
-            x: sharedModel.x.int,
-            y: sharedModel.y.int,
+            column: sharedModel.column.int,
+            row: sharedModel.row.int,
             playerId: playerIdMapper.map(sharedModel: sharedModel.playerId)
         )
     }

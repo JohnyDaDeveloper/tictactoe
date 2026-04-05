@@ -30,6 +30,7 @@ extension Container {
         Factory(self) { @MainActor in
             LiveGameViewModel(
                 loadGameDelegate: self.loadGameDelegate(),
+                makeMoveDelegate: self.makeMoveDelegate(),
                 gameUiStateMapper: self.gameUiStateMapper(),
             )
         }
