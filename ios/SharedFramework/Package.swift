@@ -16,6 +16,7 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/hmlongco/Factory", exact: "2.5.3"),
+        .package(url: "https://github.com/pointfreeco/swift-concurrency-extras.git", from: "1.3.2"),
         .package(name: "IosModel", path: "../IosModel"),
     ],
     targets: [
@@ -25,6 +26,7 @@ let package = Package(
                 "Shared",
                 "IosModel",
                 .product(name: "FactoryKit", package: "Factory"),
+                .product(name: "ConcurrencyExtras", package: "swift-concurrency-extras"),
             ]
         ),
         .binaryTarget(

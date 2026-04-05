@@ -17,6 +17,8 @@ class LiveGameViewModel : GameViewModel, GameStateContainer {
     private let loadGameDelegate: LoadGameDelegate
     @ObservationIgnored
     private let gameUiStateMapper: GameUiStateMapper
+    @ObservationIgnored
+    private var tasks: [Task<Void, Never>] = []
     
     var viewModelState: GameViewModelState = .initial
     var state: GameUiState {
@@ -35,13 +37,23 @@ class LiveGameViewModel : GameViewModel, GameStateContainer {
         self.loadGameDelegate = loadGameDelegate
         self.gameUiStateMapper = gameUiStateMapper
         
-        loadGameDelegate.handle(stateContainer: self)
+        let task = Task {
+            await loadGameDelegate.handle(stateContainer: self)
+        }
+        tasks.append(task)
     }
     
     func send(action: GameAction) {
         switch action {
         case .onFieldClick(row: let row, column: let column):
+            logger.info("Clicked on row:\(row) column\(column)")
             break
+        }
+    }
+    
+    deinit {
+        for task in tasks {
+            task.cancel()
         }
     }
 }

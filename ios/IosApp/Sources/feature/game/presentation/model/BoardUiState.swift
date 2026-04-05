@@ -7,7 +7,7 @@ struct FieldUiState {
 }
 
 struct PlayerUiState {
-    let playerId: Int
+    let playerId: String
     let icon: IconUiState
 }
 

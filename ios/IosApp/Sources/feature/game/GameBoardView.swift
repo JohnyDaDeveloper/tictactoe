@@ -21,7 +21,14 @@ public struct GameBoardView: View {
             case .ready(let board):
                 BoardView(
                     state: board,
-                    onFieldClick: { _, _ in },
+                    onFieldClick: { row, column in
+                        viewModel.send(
+                            action: GameAction.onFieldClick(
+                                row: row,
+                                column: column,
+                            )
+                        )
+                    },
                 )
             }
         }

@@ -15,10 +15,14 @@ extension Container {
             )
         }
     }
-    
+
     var loadGameDelegate: Factory<LoadGameDelegate> {
-        Factory(self) {
-            LiveLoadGameDelegate()
+        Factory(self) { @MainActor in
+            LiveLoadGameDelegate(
+                createGameUseCase: self.createGameUC(),
+                getBoardStreamUseCase: self.getBoardStreamUC(),
+                fieldsMapper: self.fieldsMapper(),
+            )
         }
     }
 
@@ -28,6 +32,12 @@ extension Container {
                 loadGameDelegate: self.loadGameDelegate(),
                 gameUiStateMapper: self.gameUiStateMapper(),
             )
+        }
+    }
+    
+    var fieldsMapper: Factory<FieldsMapper> {
+        Factory(self) {
+            LiveFieldsMapper()
         }
     }
 }

@@ -1,4 +1,4 @@
 @MainActor
-protocol GameStateContainer {
+protocol GameStateContainer : AnyObject {
     var viewModelState: GameViewModelState { get set }
 }

@@ -7,7 +7,7 @@ public struct SequenceHolder<T: Sendable, Sequence : AsyncSequence<T, Never>> : 
 
 public protocol GetBoardStreamUC: Sendable {
     
-    func invoke(gameId: GameId) -> DataResult<any AsyncSequence<IosModel.GameBoard, Never>>
+    func invoke(gameId: GameId) -> DataResult<AsyncStream<IosModel.GameBoard>>
 }
 
 public extension Container {

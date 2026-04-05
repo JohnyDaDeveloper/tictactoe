@@ -133,8 +133,8 @@ private func generatePreviewFields(
             let player: PlayerUiState?
             
             switch true {
-                case ((index % 3) == 0): player = PlayerUiState(playerId: 0, icon: .cross)
-                case ((index % 5) == 0): player = PlayerUiState(playerId: 0, icon: .circle)
+                case ((index % 3) == 0): player = PlayerUiState(playerId: "0", icon: .cross)
+                case ((index % 5) == 0): player = PlayerUiState(playerId: "1", icon: .circle)
                 
                 default: player = nil
             }

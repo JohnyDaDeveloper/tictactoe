@@ -1,4 +1,3 @@
-
 public struct GameBoard : Sendable {
     public let moves: [Move]
     public let size: Size

@@ -1,5 +1,6 @@
 import Shared
 import IosModel
+import FactoryKit
 
 protocol GameBoardMapper : Sendable {
     
@@ -32,5 +33,16 @@ struct LiveGameBoardMapper : GameBoardMapper {
             y: sharedModel.y.int,
             playerId: playerIdMapper.map(sharedModel: sharedModel.playerId)
         )
+    }
+}
+
+extension Container {
+    
+    var gameBoardMapper: Factory<GameBoardMapper> {
+        self {
+            LiveGameBoardMapper(
+                playerIdMapper: self.playerIdMapper()
+            )
+        }
     }
 }

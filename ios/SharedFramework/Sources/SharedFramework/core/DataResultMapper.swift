@@ -1,5 +1,6 @@
 import Shared
 import IosModel
+import FactoryKit
 
 enum KmpError: Error {
     case error(
@@ -10,14 +11,14 @@ enum KmpError: Error {
 
 protocol DataResultMapper: Sendable {
     
-    func map<KT, ST>(
+    func mapResult<KT, ST>(
         kmpResult: Shared.DataResult<KT>,
         _ mapData: (KT) -> ST
     ) -> IosModel.DataResult<ST>
 }
 
 struct LiveDataResultMapper : DataResultMapper {
-    func map<KT, ST>(
+    func mapResult<KT, ST>(
         kmpResult: Shared.DataResult<KT>,
         _ mapData: (KT) -> ST
     ) -> IosModel.DataResult<ST> {
@@ -38,5 +39,11 @@ struct LiveDataResultMapper : DataResultMapper {
         }
         
         return mappedResult
+    }
+}
+
+extension Container {
+    var dataResultMapper: Factory<DataResultMapper> {
+        self { LiveDataResultMapper() }
     }
 }

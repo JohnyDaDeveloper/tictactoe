@@ -1,15 +1,19 @@
 @preconcurrency import Shared
-import FactoryKit
 import IosModel
 
 struct LiveCreateGameUC : IosModel.CreateGameUC {
     
-    @Injected(\.createGameUseCase) var createGameUseCase
-    @Injected(\.dataResultMapper) var dataResultMapper
+    private let createGameUseCase: CreateGameUseCase
+    private let dataResultMapper: DataResultMapper
+    
+    init(createGameUseCase: CreateGameUseCase, dataResultMapper: DataResultMapper) {
+        self.createGameUseCase = createGameUseCase
+        self.dataResultMapper = dataResultMapper
+    }
     
     func invoke() async -> IosModel.DataResult<IosModel.GameId> {
         let result = try! await createGameUseCase.invoke()
-        let mappedResult = dataResultMapper.map(kmpResult: result) { (gameId: Shared.GameId) in
+        let mappedResult = dataResultMapper.mapResult(kmpResult: result) { (gameId: Shared.GameId) in
             IosModel.GameId(value: gameId.gameId)
         }
         
